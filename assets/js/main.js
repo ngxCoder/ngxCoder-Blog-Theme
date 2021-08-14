@@ -413,6 +413,10 @@ function gsapAnimations() {
     const green = '#B6FF00'
     const blue = '#00EFFF'
 
+    gsap.config({
+        nullTargetWarn: false
+    });
+
     gsap.registerPlugin(ScrambleTextPlugin);
     registerDecodeWordEffect()
 
