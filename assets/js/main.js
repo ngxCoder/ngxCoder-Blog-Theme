@@ -1,11 +1,13 @@
-var html = document.documentElement;
-var body = document.body;
-var lastMonth;
-var lastGroup;
-var timeout;
-var st = 0;
+let html = document.documentElement;
+let body = document.body;
+let lastMonth;
+let lastGroup;
+let timeout;
+let st = 0;
 
+darkMode();
 cover();
+gsapAnimations();
 subMenu();
 featured();
 feedLayout();
@@ -39,7 +41,7 @@ function portalButton() {
 
 function cover() {
     'use strict';
-    var cover = document.querySelector('.cover');
+    let cover = document.querySelector('.cover');
     if (!cover) return;
 
     imagesLoaded(cover, function () {
@@ -47,18 +49,18 @@ function cover() {
     });
 
     document.querySelector('.cover-arrow').addEventListener('click', function () {
-        var element = cover.nextElementSibling;
+        let element = cover.nextElementSibling;
         element.scrollIntoView({behavior: 'smooth', block: 'start'});
     });
 }
 
 function subMenu() {
     'use strict';
-    var nav = document.querySelector('.header-nav');
-    var items = nav.querySelectorAll('.menu-item');
+    let nav = document.querySelector('.header-nav');
+    let items = nav.querySelectorAll('.menu-item');
 
     function getSiblings(el, filter) {
-        var siblings = [];
+        let siblings = [];
         while (el= el.nextSibling) { if (!filter || filter(el)) siblings.push(el); }
         return siblings;
     }
@@ -68,17 +70,17 @@ function subMenu() {
     }
 
     if (items.length > 5) {
-        var separator = items[4];
+        let separator = items[4];
 
-        var toggle = document.createElement('button');
+        let toggle = document.createElement('button');
         toggle.setAttribute('class', 'button-icon menu-item-button menu-item-more');
         toggle.setAttribute('aria-label', 'More');
         toggle.innerHTML = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M21.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM13.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM5.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0z"></path></svg>';
 
-        var wrapper = document.createElement('div');
+        let wrapper = document.createElement('div');
         wrapper.setAttribute('class', 'sub-menu');
 
-        var children = getSiblings(separator, exampleFilter);
+        let children = getSiblings(separator, exampleFilter);
 
         children.forEach(function (child) {
             wrapper.appendChild(child);
@@ -107,7 +109,7 @@ function subMenu() {
 
 function featured() {
     'use strict';
-    var feed = document.querySelector('.featured-feed');
+    let feed = document.querySelector('.featured-feed');
     if (!feed) return;
 
     tns({
@@ -135,10 +137,10 @@ function featured() {
 
 function feedLayout() {
     'use strict';
-    var wrapper = document.querySelector('.feed-layout');
+    let wrapper = document.querySelector('.feed-layout');
     if (!wrapper) return;
 
-    var feed = document.querySelector('.post-feed');
+    let feed = document.querySelector('.post-feed');
 
     document.querySelector('.feed-layout-headline').addEventListener('click', function () {
         wrapper.classList.remove('expanded');
@@ -155,7 +157,7 @@ function feedLayout() {
 
 function pagination() {
     'use strict';
-    var infScroll;
+    let infScroll;
 
     if (body.classList.contains('paged-next')) {
         infScroll = new InfiniteScroll('.post-feed', {
@@ -168,7 +170,7 @@ function pagination() {
             scrollThreshold: false,
         });
 
-        var button = document.querySelector('.infinite-scroll-button');
+        let button = document.querySelector('.infinite-scroll-button');
 
         infScroll.on('request', function (_path, _fetchPromise) {
             button.classList.add('loading');
@@ -186,16 +188,16 @@ function archive(data) {
     'use strict';
     if (!body.classList.contains('logged-in')) return;
 
-    var posts = data || document.querySelectorAll('.feed');
+    let posts = data || document.querySelectorAll('.feed');
 
     posts.forEach(function (post) {
-        var current = post.getAttribute('data-month');
+        let current = post.getAttribute('data-month');
         if (current != lastMonth) {
-            var month = document.createElement('div');
+            let month = document.createElement('div');
             month.className = 'feed-month';
             month.innerText = current;
 
-            var group = document.createElement('div');
+            let group = document.createElement('div');
             group.className = 'feed-group';
             group.appendChild(month);
 
@@ -227,12 +229,12 @@ function video() {
 
 function gallery() {
     'use strict';
-    var images = document.querySelectorAll('.kg-gallery-image img');
+    let images = document.querySelectorAll('.kg-gallery-image img');
     images.forEach(function (image) {
-        var container = image.closest('.kg-gallery-image');
-        var width = image.attributes.width.value;
-        var height = image.attributes.height.value;
-        var ratio = width / height;
+        let container = image.closest('.kg-gallery-image');
+        let width = image.attributes.width.value;
+        let height = image.attributes.height.value;
+        let ratio = width / height;
         container.style.flex = ratio + ' 1 0%';
     });
 
@@ -249,10 +251,10 @@ function table() {
     'use strict';
     if (!body.classList.contains('post-template') && !body.classList.contains('page-template')) return;
 
-    var tables = document.querySelectorAll('.single-content .table');
+    let tables = document.querySelectorAll('.single-content .table');
 
     tables.forEach(function (table) {
-        var labels = [];
+        let labels = [];
 
         table.querySelectorAll('thead th').forEach(function (label) {
             labels.push(label.textContent);
@@ -278,8 +280,8 @@ function burger() {
 }
 
 function pswp(container, element, trigger, caption, isGallery) {
-    var parseThumbnailElements = function (el) {
-        var items = [],
+    let parseThumbnailElements = function (el) {
+        let items = [],
             gridEl,
             linkEl,
             item;
@@ -308,8 +310,8 @@ function pswp(container, element, trigger, caption, isGallery) {
         return items;
     };
 
-    var openPhotoSwipe = function (index, galleryElement) {
-        var pswpElement = document.querySelectorAll('.pswp')[0],
+    let openPhotoSwipe = function (index, galleryElement) {
+        let pswpElement = document.querySelectorAll('.pswp')[0],
             gallery,
             options,
             items;
@@ -334,7 +336,7 @@ function pswp(container, element, trigger, caption, isGallery) {
         gallery.listen('gettingData', function (index, item) {
             if (item.w < 1 || item.h < 1) {
                 // unknown size
-                var img = new Image();
+                let img = new Image();
                 img.onload = function () {
                     // will get size after load
                     item.w = this.width; // set image width
@@ -347,13 +349,13 @@ function pswp(container, element, trigger, caption, isGallery) {
         gallery.init();
     };
 
-    var onThumbnailsClick = function (e) {
+    let onThumbnailsClick = function (e) {
         e.preventDefault();
 
-        var siblings = e.target.closest(container).querySelectorAll(element);
-        var nodes = Array.prototype.slice.call(siblings);
-        var index = nodes.indexOf(e.target.closest(element));
-        var clickedGallery = e.target.closest(container);
+        let siblings = e.target.closest(container).querySelectorAll(element);
+        let nodes = Array.prototype.slice.call(siblings);
+        let index = nodes.indexOf(e.target.closest(element));
+        let clickedGallery = e.target.closest(container);
 
         openPhotoSwipe(index, clickedGallery);
 
@@ -363,10 +365,123 @@ function pswp(container, element, trigger, caption, isGallery) {
     // container = document.querySelector(container);
     // if (!container) return;
 
-    var triggers = document.querySelectorAll(trigger);
+    let triggers = document.querySelectorAll(trigger);
     triggers.forEach(function (trig) {
         trig.addEventListener('click', function (e) {
             onThumbnailsClick(e);
         });
     });
 }
+
+function darkMode() {
+    'use strict'
+
+    const removeDarkModeClass = function() {
+        html.classList.remove('dark-mode');
+        localStorage.setItem('dark-mode', false);
+    }
+
+    const addDarkModeClass = function() {
+        html.classList.add('dark-mode');
+        localStorage.setItem('dark-mode', true);
+    }
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        addDarkModeClass()
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if(e.matches) {
+            addDarkModeClass()
+        } else {
+            removeDarkModeClass()
+        }
+    });
+
+    document.querySelector('.toggle-track').addEventListener('click', function () {
+        if (html.classList.contains('dark-mode')) {
+            removeDarkModeClass()
+        } else {
+            addDarkModeClass()
+        }
+    });
+}
+
+function gsapAnimations() {
+    'use strict';
+
+    const green = '#B6FF00'
+    const blue = '#00EFFF'
+
+    gsap.registerPlugin(ScrambleTextPlugin);
+    registerDecodeWordEffect()
+
+    const tl = gsap.timeline({
+        onStart: () => {
+            localStorage.setItem('intro', true)
+        }
+    });
+
+    tl.decodeWord('.cover-title', { newText: 'ngxCoder', color: green });
+
+    const descriptionSplitted = new SplitText('.cover-description', {type:'words'});
+    const words = descriptionSplitted.words;
+    const tech = words[0]
+
+    tl.from(words, {duration: 1, opacity:0, y:-50, ease:'power4.out'});
+    tl.decodeWord(tech, { newText: 'Angular', color: blue }, '<');
+    
+
+    tl.decodeWord(tech, { newText: 'React', color: blue });
+    tl.decodeWord(tech, { newText: 'Frontend', color: blue });
+
+    tl.from('.cover-form', {duration: 1.5, opacity:0, y:-50, ease:'power4.out'});
+
+    tl.from('.cover-arrow', {duration: 1.5, opacity:0, y:-50, ease:'bounce'}, '<')
+    .addLabel('skipIntro', '<');
+
+    if(localStorage.getItem('intro')){
+        tl.seek('skipIntro')
+    }
+}
+
+function registerDecodeWordEffect() {
+    gsap.registerEffect({
+      name: 'decodeWord',
+      effect: (targets, config) => {
+        const decodeTl = gsap.timeline()
+
+        decodeTl.set(targets, {
+          color: 'white',
+          textShadow: `0 0 0`
+        });
+
+        decodeTl.to(targets, {
+          duration: 0.5,
+          opacity: 1,
+          scrambleText: {
+            text: config.newText, 
+            chars:'lowerCase', 
+            revealDelay: 0.5, 
+            tweenLength:false 
+            },
+        })
+        decodeTl.to(targets, {
+          duration: 0.5,
+          textShadow: `0 0 10px ${config.color}, 0 0 10px ${config.color}, 0 0 10px ${config.color}`,
+          ease: 'power4.in'
+        })
+
+        decodeTl.to(targets, {
+          duration: 0.5, 
+          color: `${config.color}`,
+          textShadow: `0 0 5px ${config.color}, 0 0 0px ${config.color}, 0 0 0px ${config.color}`,
+          ease:'none'
+        })
+
+          return decodeTl
+      },
+      defaults: {},
+      extendTimeline: true, 
+    })
+  }

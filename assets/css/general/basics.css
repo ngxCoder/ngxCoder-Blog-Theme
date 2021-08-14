@@ -8,7 +8,14 @@
     --mid-gray-color: #ccc;
     --dark-gray-color: #444;
     --darker-gray-color: #1a1a1a;
-    --black-color: #000;
+    --black-color: #1e1e1e;
+    --dark-mode-bg-color: #282c35;
+    --dark-mode-darker-bg-color: #21252c;
+    --dark-mode-primary-text-color: #ccc;
+    --dark-mode-secondary-text-color: #999;
+    --dark-mode-border-color: #495061;
+    --dark-mode-primary-accent-color: #b6ff00;
+    --dark-mode-secondary-accent-color: #00efff;
     --green-color: #28a745;
     --orange-color: #ffc107;
     --red-color: #dc3545;
@@ -16,7 +23,8 @@
     --twitter-color: #1da1f2;
     --rss-color: #f26522;
     --animation-base: ease-in-out;
-    --font-base: Mulish, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif; /* stylelint-disable-line value-keyword-case */
+    --font-title: 'Play', sans-serif;
+    --font-base: Open Sans, Arial, sans-serif; /* stylelint-disable-line value-keyword-case */
     --navbar-height: 80px;
 }
 
@@ -25,6 +33,12 @@
         --navbar-height: 70px;
     }
 }
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --white-color: var(--black-color);
+    }
+} */
 
 html {
     box-sizing: border-box;
@@ -67,7 +81,7 @@ h5,
 h6 {
     margin: 0 0 1.5rem;
     color: var(--darker-gray-color);
-    font-family: var(--font-base);
+    font-family: var(--font-title);
     line-height: 1.3;
     font-weight: 800;
 }

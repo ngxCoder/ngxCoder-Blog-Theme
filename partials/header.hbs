@@ -41,10 +41,16 @@
             </div>
 
             {{#if @member}}
-                <button class="button-text menu-item members-account" data-portal="account">Account</button>
+                <button class="button-text menu-item members-account" data-portal="account">Perfil</button>
             {{else}}
-                <button class="button-text menu-item members-login" data-portal="signin">Login</button>
+                <button class="button-text menu-item members-login" data-portal="signin">Iniciar Sesión</button>
             {{/if}}
+
+            <div class="toggle-track">
+                <div class="toggle-moon">{{> icons/moon}}</div>
+                <div class="toggle-sun">{{> icons/sun}}</div>
+                <div class="toggle-thumb"></div>
+            </div>
         </div>
     </div>
 </header>

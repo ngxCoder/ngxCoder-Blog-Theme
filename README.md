@@ -1,8 +1,7 @@
-# Edition
+# ngxCoder Theme
 
-The newsletter theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Edition! If you're just looking to download the latest release, download the theme [here](https://github.com/TryGhost/Edition/archive/refs/heads/master.zip).
+This theme was forked from Edition, the newsletter theme for [Ghost](http://github.com/tryghost/ghost/).
 
-&nbsp;
 
 # Development
 
@@ -10,10 +9,10 @@ Edition styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'
 
 ```bash
 # Install
-yarn
+npm i
 
 # Run build & watch for changes
-$ yarn dev
+$ npm run dev
 ```
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
@@ -22,7 +21,7 @@ The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which
 
 ```bash
 # create .zip file
-yarn zip
+npm run zip
 ```
 
 # PostCSS Features Used
